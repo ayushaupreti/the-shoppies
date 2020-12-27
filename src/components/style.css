@@ -1,0 +1,24 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color:  rgb(105, 105, 105);
+    color: white;
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(105, 105, 105);
+    color: white;
+    text-align: center;
+  }
+
+.section-padding {
+    padding-bottom: 60px 0;
+    padding-top: 30px;
+}

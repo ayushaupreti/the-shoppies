@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React, { Fragment } from "react";
+import loadable from "@loadable/component";
 import './App.css';
+
+const Loading = (
+  <div className="loading">
+    <div className="text-center middle">
+      <div className="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+);
+
+const Header = loadable(() => import("./components/Header"), {
+  fallback: Loading,
+});
+
+const Footer = loadable(() => import("./components/Footer"), {
+  fallback: Loading,
+});
+
+const SearchBar = loadable(() => import("./components/Search"), {
+  fallback: Loading,
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header></Header>
+      <SearchBar></SearchBar>
+      <Footer></Footer>
+    </Fragment>
   );
 }
 
