@@ -1,39 +1,33 @@
-import React, { Fragment } from "react";
-import loadable from "@loadable/component";
+import React, { Suspense } from "react";
 import './App.css';
 
-const Loading = (
-  <div className="loading">
-    <div className="text-center middle">
-      <div className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-  </div>
-);
 
-const Header = loadable(() => import("./components/Header"), {
-  fallback: Loading,
-});
+const Header = React.lazy(() => import("./components/Header"));
+const Footer = React.lazy(() => import("./components/Footer"));
+const SearchBar = React.lazy(() => import("./components/Search"));
+const Results = React.lazy(() => import("./components/Results"));
 
-const Footer = loadable(() => import("./components/Footer"), {
-  fallback: Loading,
-});
-
-const SearchBar = loadable(() => import("./components/Search"), {
-  fallback: Loading,
-});
 
 function App() {
   return (
-    <Fragment>
-      <Header></Header>
-      <SearchBar></SearchBar>
-      <Footer></Footer>
-    </Fragment>
+    <div className="container">
+      <Suspense fallback={<div>Loading...</div>}>
+         <Header />
+       </Suspense>
+      <div className="row">
+      <Suspense fallback={<div>Loading...</div>}>
+         <SearchBar />
+       </Suspense>
+      </div>
+      <div className="row">
+      <Suspense fallback={<div>Loading...</div>}>
+         <Results />
+       </Suspense>
+      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+         <Footer />
+       </Suspense>
+    </div>
   );
 }
 
