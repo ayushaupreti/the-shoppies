@@ -1,9 +1,12 @@
 import React, {Fragment, useState} from "react";
+import { useSelector } from 'react-redux'
 import "./style.css";
 
 
 export default function Results() {
-      
+
+    const omdb = useSelector(state => state.movies.omdb)
+
   return (
       <Fragment>
           <div className="card cards" >

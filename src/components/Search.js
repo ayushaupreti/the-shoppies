@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from "react";
-import { debounce } from 'throttle-debounce';
+import { useDispatch } from 'react-redux'
+import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
 
@@ -9,23 +10,12 @@ export default function Search() {
   
     const handleMovieInput = (e) => {
       setMovieTitle(e)
-      console.log(movieTitle)
-
-      const apiUrl = 'http://www.omdbapi.com/?apikey=cd1dfb3a&s='+movieTitle;
-        fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => console.log('This is your data', data));
+      getMovies(e) //debouncer here
     };
 
-    // const handleMovieInput = debounce(500, (e) => {
-    //   setMovieTitle(e)
-    //   console.log(movieTitle)
+    const dispatch = useDispatch()
 
-    //   const apiUrl = 'http://www.omdbapi.com/?apikey=cd1dfb3a&s='+movieTitle;
-    //     fetch(apiUrl)
-    //   .then((response) => response.json())
-    //   .then((data) => console.log('This is your data', data));
-    // });
+    const getMovies = (query) => dispatch(MoviesActions.fetch_movies(query))
 
       
   return (
