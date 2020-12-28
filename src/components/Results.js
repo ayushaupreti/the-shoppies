@@ -5,8 +5,8 @@ import "./style.css";
 
 export default function Results() {
 
-    const omdb = useSelector(state => state.movies.omdb)
-
+    const omdb = useSelector(state => state.movies.omd)
+      
   return (
       <Fragment>
           <div className="card cards" >
