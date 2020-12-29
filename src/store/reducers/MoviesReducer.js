@@ -5,7 +5,8 @@ import produce from 'immer';
 const defaultMovieState = {
     list: [], 
     loading: false,
-    error: ""
+    error: "",
+    nominated: false
 }
 
 const omdb = (state = defaultMovieState, action) => {

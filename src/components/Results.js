@@ -31,10 +31,12 @@ export default function Results() {
                         //     </div>
                         // </div>
                         <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex w-100">
+                            <div className=" row d-flex w-100">
                                 <h5 className="mb-1">{movie["Title"]}</h5>
                             </div>
-                            <small>{movie["Year"]}</small>
+                            <div className=" row d-flex w-100">
+                                <small>{movie["Year"]}</small>
+                            </div>
                             <button type="button" className="btn btn-secondary">Nominate</button>
                         </li>
                     )

@@ -18,6 +18,11 @@
     text-align: center;
   }
 
+.nomination-card {
+    background-color: rgb(230, 230, 230);
+    min-height: 80vh;
+}
+
 .cards {
     background-color: rgb(230, 230, 230);
 }
