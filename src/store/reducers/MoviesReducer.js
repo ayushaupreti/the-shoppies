@@ -19,7 +19,9 @@ const omdb = (state = defaultMovieState, action) => {
     case MoviesActions.MOVIE_SUCCESS:
       return produce(state, draft => {
         draft.loading = false;
-        draft.list = action.response.Search;
+        if(action.response.Search){
+          draft.list = action.response.Search;
+        }
         draft.error = "";
       })
     case MoviesActions.MOVIE_ERROR:

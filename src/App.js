@@ -3,31 +3,27 @@ import './App.css';
 
 
 const Header = React.lazy(() => import("./components/Header"));
-const Footer = React.lazy(() => import("./components/Footer"));
 const SearchBar = React.lazy(() => import("./components/Search"));
 const Results = React.lazy(() => import("./components/Results"));
+const Nominations = React.lazy(() => import("./components/Nominations"));
 
 
 function App() {
   return (
-    <div className="container">
-      <Suspense fallback={<div>Loading...</div>}>
-         <Header />
-       </Suspense>
-      <div className="row">
-      <Suspense fallback={<div>Loading...</div>}>
-         <SearchBar />
-       </Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="container">
+        <Header />
+        <div className="row mt-5 pt-5">
+          <div className="col-8">
+            <SearchBar />
+            <Results />
+          </div>
+          <div className="col-4">
+            <Nominations />
+          </div>
+        </div>
       </div>
-      <div className="row">
-      <Suspense fallback={<div>Loading...</div>}>
-         <Results />
-       </Suspense>
-      </div>
-      <Suspense fallback={<div>Loading...</div>}>
-         <Footer />
-       </Suspense>
-    </div>
+    </Suspense >
   );
 }
 
