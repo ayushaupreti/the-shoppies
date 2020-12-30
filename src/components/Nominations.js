@@ -25,19 +25,15 @@ export default function Nominations() {
             <div className="list-group list-group-flush">
                 {nominations.map((nomination) => {
                     return (
-                        <li className="list-group-item d-flex justify-content-between align-items-center nomination">
+                        <li key={"nomination"+nomination["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center nomination">
                             <div className=" row d-flex w-100">
-                                <h5 className="mb-1">
-                                    <strong>{nomination["Title"]} </strong> <h7>({nomination["Year"]})</h7>
-                                </h5>
+                                <h6 className="mb-1">
+                                    <strong>{nomination["Title"]} </strong> ({nomination["Year"]})
+                                </h6>
                             </div>
-                            {/* <div className=" row d-flex w-100">
-                                <small>{nomination["Year"]}</small>
-                            </div> */}
                             <button type="button" className="close" data-dismiss="alert" onClick={() => dispatch(MoviesActions.remove_nomination(nomination["imdbID"]))}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            {/* <button type="button" className="btn btn-secondary">Nominate</button> */}
                         </li>
                     )
                 }
@@ -52,7 +48,7 @@ export default function Nominations() {
             <div className="card-body">
                 <h3>Your Nominations</h3>
                 {!loading && error && <p>error</p>}
-                {!loading && nominations && nominations[0] && <Nomination />}
+                {!loading && nominations && <Nomination />}
             </div>
         </div>
     );

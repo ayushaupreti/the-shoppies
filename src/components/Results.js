@@ -23,15 +23,12 @@ export default function Results() {
             <div className="list-group">
                 {movieList.map((movie) => {
                     return (
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                        <li key={"movie" + movie["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center">
                             <div className=" row d-flex w-100">
-                                <h5 className="mb-1">
-                                    <strong>{movie["Title"]} </strong> <h7>({movie["Year"]})</h7>
-                                </h5>
+                                <h6 className="mb-1">
+                                    <strong>{movie["Title"]} </strong> ({movie["Year"]})
+                                </h6>
                             </div>
-                            {/* <div className=" row d-flex w-100">
-                                <small>{movie["Year"]}</small>
-                            </div> */}
                             <button type="button" className="btn btn-secondary" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
                         </li>
                     )
