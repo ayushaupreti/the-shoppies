@@ -38,15 +38,21 @@ const omdb = (state = defaultMovieState, action) => {
       })
     case MoviesActions.NOMINATE:
       return produce(state, draft => {
-        // find movie in movies.list by imdbID
-        // put it in nominatedID's
-        // for the item clicked, set flag enabled/disabled
         const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
         const index = draft.list.indexOf(nominatedMovie)
         if (nominatedMovie) {
           draft.list[index]["Nominated"] = true
         }
         draft.nominations.push(nominatedMovie)
+      })
+    case MoviesActions.NOMINATION_REMOVAL:
+      return produce(state, draft => {
+        const removedNomination = draft.nominations.find((movie) => movie.imdbID === action.imdbID)
+        const index = draft.nominations.indexOf(removedNomination)
+        draft.nominations.splice(index, 1)
+        if (removedNomination) {
+          draft.list[index]["Nominated"] = false
+        }
       })
     default:
       return state

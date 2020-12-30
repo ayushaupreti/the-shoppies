@@ -25,11 +25,13 @@ export default function Results() {
                     return (
                         <li className="list-group-item d-flex justify-content-between align-items-center">
                             <div className=" row d-flex w-100">
-                                <h5 className="mb-1">{movie["Title"]}</h5>
+                                <h5 className="mb-1">
+                                    <strong>{movie["Title"]} </strong> <h7>({movie["Year"]})</h7>
+                                </h5>
                             </div>
-                            <div className=" row d-flex w-100">
+                            {/* <div className=" row d-flex w-100">
                                 <small>{movie["Year"]}</small>
-                            </div>
+                            </div> */}
                             <button type="button" className="btn btn-secondary" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
                         </li>
                     )

@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
 export default function Nominations() {
     const nominations = useSelector(state => state.movies.omdb.nominations)
     const loading = useSelector(state => state.movies.omdb.loading)
     const error = useSelector(state => state.movies.omdb.error)
+    const dispatch = useDispatch()
 
     function NominationsComplete(){
         return (
@@ -25,11 +27,16 @@ export default function Nominations() {
                     return (
                         <li className="list-group-item d-flex justify-content-between align-items-center nomination">
                             <div className=" row d-flex w-100">
-                                <h5 className="mb-1">{nomination["Title"]}</h5>
+                                <h5 className="mb-1">
+                                    <strong>{nomination["Title"]} </strong> <h7>({nomination["Year"]})</h7>
+                                </h5>
                             </div>
-                            <div className=" row d-flex w-100">
+                            {/* <div className=" row d-flex w-100">
                                 <small>{nomination["Year"]}</small>
-                            </div>
+                            </div> */}
+                            <button type="button" className="close" data-dismiss="alert" onClick={() => dispatch(MoviesActions.remove_nomination(nomination["imdbID"]))}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             {/* <button type="button" className="btn btn-secondary">Nominate</button> */}
                         </li>
                     )

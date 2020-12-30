@@ -4,6 +4,7 @@ const MOVIE_SUCCESS = 'MOVIE::SUCCESS'
 const MOVIE_ERROR = 'MOVIE::ERROR'
 
 const NOMINATE = 'NOMINATE'
+const NOMINATION_REMOVAL = 'NOMINATION::REMOVAL'
 
 
 const clear_movies = () => {
@@ -30,16 +31,22 @@ const nominate = (imdbID) => {
     return { type: NOMINATE, imdbID } 
 }
 
+const remove_nomination = (imdbID) => {
+    return { type: NOMINATION_REMOVAL, imdbID}
+}
+
 
 export const MoviesActions = {
     clear_movies,
     fetch_movies,
     nominate,
+    remove_nomination,
 
     MOVIE_REQUEST,
     MOVIE_CLEAR,
     MOVIE_SUCCESS,
     MOVIE_ERROR,
-    NOMINATE
+    NOMINATE,
+    NOMINATION_REMOVAL
 };
 
