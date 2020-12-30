@@ -7,7 +7,6 @@ const SearchBar = React.lazy(() => import("./components/Search"));
 const Results = React.lazy(() => import("./components/Results"));
 const Nominations = React.lazy(() => import("./components/Nominations"));
 
-
 function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>

@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import { useDispatch } from 'react-redux'
-import { debounce } from 'throttle-debounce';
+// import { debounce } from 'throttle-debounce';
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
@@ -27,7 +27,7 @@ export default function Search() {
   return (
     <Fragment>
       <div className="card cards mb-3">
-        <div class="card-body">
+        <div className="card-body">
           <div className="input-group">
             <input
               type="text"

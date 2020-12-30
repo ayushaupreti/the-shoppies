@@ -6,7 +6,7 @@ const defaultMovieState = {
     list: [], 
     loading: false,
     error: "",
-    nominated: false
+    nominations: []
 }
 
 const omdb = (state = defaultMovieState, action) => {
@@ -20,8 +20,13 @@ const omdb = (state = defaultMovieState, action) => {
     case MoviesActions.MOVIE_SUCCESS:
       return produce(state, draft => {
         draft.loading = false;
-        if(action.response.Search){
-          draft.list = action.response.Search;
+        draft.list = action.response.Search;
+        for (let i = 0; i < draft.nominations.length; i++){
+          const nominatedMovie = draft.list.find((movie) => movie.imdbID === draft.nominations[i].imdbID)
+          const index = draft.list.indexOf(nominatedMovie)
+          if(nominatedMovie){
+            draft.list[index]["Nominated"] = true
+          }
         }
         draft.error = "";
       })
@@ -30,6 +35,18 @@ const omdb = (state = defaultMovieState, action) => {
         draft.loading = false;
         draft.list = [];
         draft.error = action.error;
+      })
+    case MoviesActions.NOMINATE:
+      return produce(state, draft => {
+        // find movie in movies.list by imdbID
+        // put it in nominatedID's
+        // for the item clicked, set flag enabled/disabled
+        const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
+        const index = draft.list.indexOf(nominatedMovie)
+        if (nominatedMovie) {
+          draft.list[index]["Nominated"] = true
+        }
+        draft.nominations.push(nominatedMovie)
       })
     default:
       return state
