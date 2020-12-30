@@ -14,7 +14,7 @@ const clear_movies = () => {
 const fetch_movies = (query) => {
     return dispatch => {
         dispatch(request())
-        const apiUrl = 'http://www.omdbapi.com/?apikey=cd1dfb3a&s='+query;
+        const apiUrl = 'https://www.omdbapi.com/?apikey=cd1dfb3a&s='+query;
         fetch(apiUrl).then((response) => response.json())
         .then((data) => dispatch(success(data)))
         .catch(err => {
