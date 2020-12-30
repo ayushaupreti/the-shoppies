@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from "react";
 import { useDispatch } from 'react-redux'
 import { debounce } from 'throttle-debounce';
-import { throttle } from 'throttle-debounce';
+// import { throttle } from 'throttle-debounce';
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
