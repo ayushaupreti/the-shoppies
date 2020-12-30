@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from "react";
 import { useDispatch } from 'react-redux'
-// import { debounce } from 'throttle-debounce';
+import { debounce } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce';
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
@@ -9,14 +10,19 @@ export default function Search() {
 
   const [movieTitle, setMovieTitle] = useState("");
 
-  // const debounceFunc = debounce(2000, false, (e) => {
+  const debounceFunc = debounce(2000, false, (e) => {
+    getMovies(e)
+  });
+
+  // const throttleFunc = throttle(100, (e) => {
   //   getMovies(e)
   // });
   
   const handleMovieInput = (e) => {
     setMovieTitle(e)
-    // debounceFunc(e)
-    getMovies(e)
+    debounceFunc(e)
+    // throttleFunc(e)
+    // getMovies(e)
   };
 
   const dispatch = useDispatch()
@@ -26,6 +32,7 @@ export default function Search() {
       
   return (
     <Fragment>
+      <h6>Search for your favourite movie and nominate it!</h6>
       <div className="card cards mb-3">
         <div className="card-body">
           <div className="input-group">

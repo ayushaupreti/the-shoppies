@@ -43,7 +43,7 @@ export default function Nominations() {
     }
 
     return (
-        <div className="card nomination-card h-100">
+        <div className="card nomination-card h-100 mt-4">
             {nominations.length === 5 && <NominationsComplete />}
             <div className="card-body">
                 <h3>Your Nominations</h3>

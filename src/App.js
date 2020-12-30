@@ -13,11 +13,11 @@ function App() {
       <div className="container">
         <Header />
         <div className="row mt-5 pt-5">
-          <div className="col-8">
+          <div className="col-xs-12 col-md-8">
             <SearchBar />
             <Results />
           </div>
-          <div className="col-4">
+          <div className="col-xs-12 col-md-4">
             <Nominations />
           </div>
         </div>
