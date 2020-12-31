@@ -17,13 +17,13 @@ export default function Results() {
       </div>
      );
     }
-// d-flex justify-content-between align-items-center
+
     function Box() { 
         return(
             <div className="list-group">
                 {movieList.map((movie) => {
                     return (
-                        <li key={"movie" + movie["imdbID"]} className="list-group-item ">
+                        <li key={"movie" + movie["imdbID"]} className="list-group-item">
                             <div className="row ">
                                 <div className="col-9 pull-left">
                                     <h6 className="mb-1">

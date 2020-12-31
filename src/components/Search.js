@@ -1,7 +1,5 @@
 import React, {Fragment, useState} from "react";
 import { useDispatch } from 'react-redux'
-// import { debounce } from 'throttle-debounce';
-import { throttle } from 'throttle-debounce';
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
 
@@ -9,26 +7,24 @@ import "./style.css";
 export default function Search() {
 
   const [movieTitle, setMovieTitle] = useState("");
+  const [timer, setTimer] = useState()
 
-  // const debounceFunc = debounce(2000, false, (e) => {
-  //   getMovies(e)
-  // });
+  var debounce = function (title, delay) {
+    clearTimeout(timer);
+    const newtimer = setTimeout(() => {
+      getMovies(title)
+    }, delay)
+    setTimer(newtimer)
+  };
 
-  const throttleFunc = throttle(20000, (e) => {
-    getMovies(e)
-  });
-  
   const handleMovieInput = (e) => {
     setMovieTitle(e)
-    // debounceFunc(e)
-    throttleFunc(e)
-    // getMovies(e)
+    debounce(e, 200)
   };
 
   const dispatch = useDispatch()
 
   const getMovies = (query) => dispatch(MoviesActions.fetch_movies(query))
-
       
   return (
     <Fragment>
@@ -45,6 +41,6 @@ export default function Search() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </Fragment> 
   );
 }

@@ -10,7 +10,7 @@ export default function Nominations() {
 
     function NominationsComplete(){
         return (
-            <div className="alert alert-success alert-dismissible fade show" role="alert">
+            <div className="alert alert-success alert-dismissible fade show mt-4" role="alert">
                 <h5>Congratulations!</h5> 
                 <h6>You have nominated 5 movies!</h6>
             </div>
@@ -22,15 +22,19 @@ export default function Nominations() {
             <div className="list-group list-group-flush">
                 {nominations.map((nomination) => {
                     return (
-                        <li key={"nomination"+nomination["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center nomination bg-secondary">
-                            <div className=" row d-flex w-100">
-                                <h6 className="mb-1">
-                                    <strong>{nomination["Title"]} </strong> ({nomination["Year"]})
-                                </h6>
+                        <li key={"nomination"+nomination["imdbID"]} className="list-group-item nomination bg-secondary">
+                            <div className="row"> 
+                                <div className="col-10 pull-left">
+                                    <h6 className="mb-1">
+                                        <strong>{nomination["Title"]} </strong> ({nomination["Year"]})
+                                    </h6>
+                                </div>
+                                <div className="col-2 d-flex justify-content-end">
+                                    <button type="button" className="close" data-dismiss="alert" onClick={() => dispatch(MoviesActions.remove_nomination(nomination["imdbID"]))}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
-                            <button type="button" className="close" data-dismiss="alert" onClick={() => dispatch(MoviesActions.remove_nomination(nomination["imdbID"]))}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </li>
                     )
                 }
@@ -40,11 +44,13 @@ export default function Nominations() {
     }
 
     return (
-        <div className="card nomination-card bg-secondary h-100 my-4">
+        <div>
             {nominations.length >= 5 && <NominationsComplete />}
-            <div className="card-body">
-                <h3>Your Nominations</h3>
-                {!loading && nominations && <Nomination />}
+            <div className="card nomination-card bg-secondary h-100 my-4">
+                <div className="card-body">
+                    <h3>Your Nominations</h3>
+                    {!loading && nominations && <Nomination />}
+                </div>
             </div>
         </div>
     );
