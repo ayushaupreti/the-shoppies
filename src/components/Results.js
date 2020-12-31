@@ -49,8 +49,9 @@ export default function Results() {
     <Fragment>
         <h5>Results</h5>
           { loading && <Loader />}
-          { !loading && error && <p>No Results</p>}
-          {!loading && movieList && movieList[0] && <Box />}
+          { !loading && error && <p>Sorry, there was an error.</p>}
+          { !loading && !movieList && <p>No Results</p>}
+          { !loading && movieList && movieList[0] && <Box />}
     </Fragment>
   );
 }
