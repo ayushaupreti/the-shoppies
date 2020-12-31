@@ -71,7 +71,7 @@ export default function Nominations() {
             <div className="card nomination-card bg-secondary h-100 my-4">
                 <div className="card-body">
                     <h3>Your Nominations</h3>
-                    {!loading && nominations && <Nomination />}
+                    {!loading && nominations !== undefined && <Nomination />}
                 </div>
             </div>
         </div>
