@@ -17,19 +17,24 @@ export default function Results() {
       </div>
      );
     }
-
+// d-flex justify-content-between align-items-center
     function Box() { 
         return(
             <div className="list-group">
                 {movieList.map((movie) => {
                     return (
-                        <li key={"movie" + movie["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className=" row d-flex w-100">
-                                <h6 className="mb-1">
-                                    <strong>{movie["Title"]} </strong> ({movie["Year"]})
+                        <li key={"movie" + movie["imdbID"]} className="list-group-item ">
+                            <div className="row ">
+                                <div className="col-9 pull-left">
+                                    <h6 className="mb-1">
+                                        <strong>{movie["Title"]} </strong> ({movie["Year"]})
                                 </h6>
+                                </div>
+                                <div className="col-3 d-flex justify-content-end">
+                                    <button type="button" className="btn btn-primary" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
+                                </div>
+                            
                             </div>
-                            <button type="button" className="btn btn-primary ml-1" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
                         </li>
                     )
                         }

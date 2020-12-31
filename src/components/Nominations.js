@@ -11,10 +11,8 @@ export default function Nominations() {
     function NominationsComplete(){
         return (
             <div className="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Congratulations!</strong> You have nominated 5 movies!
-                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5>Congratulations!</h5> 
+                <h6>You have nominated 5 movies!</h6>
             </div>
         )
     }
@@ -43,7 +41,7 @@ export default function Nominations() {
 
     return (
         <div className="card nomination-card bg-secondary h-100 my-4">
-            {nominations.length === 5 && <NominationsComplete />}
+            {nominations.length >= 5 && <NominationsComplete />}
             <div className="card-body">
                 <h3>Your Nominations</h3>
                 {!loading && nominations && <Nomination />}
