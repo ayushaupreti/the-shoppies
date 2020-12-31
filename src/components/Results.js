@@ -29,7 +29,7 @@ export default function Results() {
                                     <strong>{movie["Title"]} </strong> ({movie["Year"]})
                                 </h6>
                             </div>
-                            <button type="button" className="btn btn-secondary ml-1" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
+                            <button type="button" className="btn btn-primary ml-1" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
                         </li>
                     )
                         }

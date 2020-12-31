@@ -33,7 +33,7 @@ export default function Search() {
   return (
     <Fragment>
       <h6>Search for your favourite movie and nominate it!</h6>
-      <div className="card cards bg-secondary mb-3">
+      <div className="card bg-secondary mb-3">
         <div className="card-body">
           <div className="input-group">
             <input

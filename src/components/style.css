@@ -3,20 +3,9 @@
     left: 0;
     top: 0;
     width: 100%;
-    color: white;
 }
 
 
 .nomination-card {
-    background-color: rgb(230, 230, 230);
     min-height: 80vh;
 }
-
-.nomination {
-    background-color: rgb(230, 230, 230);
-}
-
-.cards {
-    background-color: rgb(230, 230, 230);
-}
-
