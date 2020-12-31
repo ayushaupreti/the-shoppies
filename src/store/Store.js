@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger'
 import createRootReducer from './reducers/RootReducer';
 
-const logger = createLogger({ collapsed: false })
+const logger = createLogger({ collapsed: true })
 
 const initialState = {}
 

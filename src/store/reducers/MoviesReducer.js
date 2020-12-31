@@ -6,7 +6,7 @@ const defaultMovieState = {
     list: [], 
     loading: false,
     error: "",
-    nominations: [],
+    nominations: undefined,
     previouslyRemovedNominations: []
 }
 
@@ -41,10 +41,12 @@ const omdb = (state = defaultMovieState, action) => {
       return produce(state, draft => {
         const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
         const index = draft.list.indexOf(nominatedMovie)
-        if (nominatedMovie) {
-          draft.list[index]["Nominated"] = true
+        if (draft.nominations === undefined){
+          draft.nominations = [nominatedMovie]
+        } else if (nominatedMovie) {
+          draft.nominations.push(nominatedMovie)
         }
-        draft.nominations.push(nominatedMovie)
+        draft.list[index]["Nominated"] = true
       })
     case MoviesActions.NOMINATION_REMOVAL:
       return produce(state, draft => {
@@ -61,6 +63,10 @@ const omdb = (state = defaultMovieState, action) => {
         const indexOfNomination = draft.nominations.indexOf(removedNomination)
         newNominations.splice(indexOfNomination, 1)
         draft.nominations = newNominations
+      })
+    case MoviesActions.RESTORE_NOMINATIONS:
+      return produce(state, draft => {
+        draft.nominations = action.nominationList
       })
     default:
       return state

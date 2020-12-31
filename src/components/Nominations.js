@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
@@ -7,6 +7,28 @@ export default function Nominations() {
     const nominations = useSelector(state => state.movies.omdb.nominations)
     const loading = useSelector(state => state.movies.omdb.loading)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        try {
+            if (nominations !== undefined) {
+                localStorage.setItem('nominationList', JSON.stringify(nominations));
+                console.log("saved new nomination")
+            } 
+        } catch (error) {
+            console.log(error);
+        }
+    }, [nominations]);
+
+    useEffect(() => {
+        const storedNominations = localStorage.getItem('nominationList')
+        if(storedNominations){
+            const parsedNominations = JSON.parse(storedNominations)
+            console.log(parsedNominations)
+            // eslint-disable-next-line
+            dispatch(MoviesActions.restore_nominations(parsedNominations))
+        }
+    }, [dispatch])
+
 
     function NominationsComplete(){
         return (
@@ -45,7 +67,7 @@ export default function Nominations() {
 
     return (
         <div>
-            {nominations.length >= 5 && <NominationsComplete />}
+            {nominations !== undefined && nominations.length >= 5 && <NominationsComplete />}
             <div className="card nomination-card bg-secondary h-100 my-4">
                 <div className="card-body">
                     <h3>Your Nominations</h3>
