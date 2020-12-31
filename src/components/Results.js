@@ -29,7 +29,7 @@ export default function Results() {
                                     <strong>{movie["Title"]} </strong> ({movie["Year"]})
                                 </h6>
                             </div>
-                            <button type="button" className="btn btn-secondary" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
+                            <button type="button" className="btn btn-secondary ml-1" disabled={movie["Nominated"]} onClick={() => dispatch(MoviesActions.nominate(movie["imdbID"]))} >Nominate</button>
                         </li>
                     )
                         }
@@ -44,12 +44,8 @@ export default function Results() {
     <Fragment>
         <h5>Results</h5>
           { loading && <Loader />}
-          { !loading && error && <p>error</p>}
+          { !loading && error && <p>No Results</p>}
           {!loading && movieList && movieList[0] && <Box />}
-          {/* { !loading && movieList && movieList[0] 
-            ? <Box />
-            : <p>empty</p>
-          } */}
     </Fragment>
   );
 }

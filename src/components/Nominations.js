@@ -6,7 +6,6 @@ import "./style.css";
 export default function Nominations() {
     const nominations = useSelector(state => state.movies.omdb.nominations)
     const loading = useSelector(state => state.movies.omdb.loading)
-    const error = useSelector(state => state.movies.omdb.error)
     const dispatch = useDispatch()
 
     function NominationsComplete(){
@@ -25,7 +24,7 @@ export default function Nominations() {
             <div className="list-group list-group-flush">
                 {nominations.map((nomination) => {
                     return (
-                        <li key={"nomination"+nomination["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center nomination">
+                        <li key={"nomination"+nomination["imdbID"]} className="list-group-item d-flex justify-content-between align-items-center nomination bg-secondary">
                             <div className=" row d-flex w-100">
                                 <h6 className="mb-1">
                                     <strong>{nomination["Title"]} </strong> ({nomination["Year"]})
@@ -43,11 +42,10 @@ export default function Nominations() {
     }
 
     return (
-        <div className="card nomination-card h-100 mt-4">
+        <div className="card nomination-card text-white bg-secondary h-100 my-4">
             {nominations.length === 5 && <NominationsComplete />}
             <div className="card-body">
                 <h3>Your Nominations</h3>
-                {!loading && error && <p>error</p>}
                 {!loading && nominations && <Nomination />}
             </div>
         </div>
