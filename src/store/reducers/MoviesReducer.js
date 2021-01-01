@@ -22,11 +22,13 @@ const omdb = (state = defaultMovieState, action) => {
       return produce(state, draft => {
         draft.loading = false;
         draft.list = action.response.Search;
-        for (let i = 0; i < draft.nominations.length; i++){
-          const nominatedMovie = draft.list.find((movie) => movie.imdbID === draft.nominations[i].imdbID)
-          const index = draft.list.indexOf(nominatedMovie)
-          if(nominatedMovie){
-            draft.list[index]["Nominated"] = true
+        if(draft.nominated !== undefined){
+          for (let i = 0; i < draft.nominations.length; i++) {
+            const nominatedMovie = draft.list.find((movie) => movie.imdbID === draft.nominations[i].imdbID)
+            const index = draft.list.indexOf(nominatedMovie)
+            if (nominatedMovie) {
+              draft.list[index]["Nominated"] = true
+            }
           }
         }
         draft.error = "";
