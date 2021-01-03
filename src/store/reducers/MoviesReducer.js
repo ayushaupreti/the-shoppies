@@ -44,8 +44,8 @@ const omdb = (state = defaultMovieState, action) => {
         const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
         const index = draft.list.indexOf(nominatedMovie)
         if (draft.nominations === undefined){
-          draft.nominations = [nominatedMovie]
-        } else if (nominatedMovie) {
+          draft.nominations = []
+        } if (nominatedMovie) {
           draft.nominations.push(nominatedMovie)
         }
         draft.list[index]["Nominated"] = true
