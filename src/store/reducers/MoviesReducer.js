@@ -42,9 +42,11 @@ const omdb = (state = defaultMovieState, action) => {
     case MoviesActions.NOMINATE:
       return produce(state, draft => {
         const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
+        console.log(nominatedMovie)
         const index = draft.list.indexOf(nominatedMovie)
         if (draft.nominations === undefined){
           draft.nominations = []
+          console.log(draft.nominations)
         }
         draft.nominations.push(nominatedMovie)  
         draft.list[index]["Nominated"] = true
