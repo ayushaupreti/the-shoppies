@@ -12,7 +12,6 @@ export default function Nominations() {
         try {
             if (nominations !== undefined) {
                 localStorage.setItem('nominationList', JSON.stringify(nominations));
-                console.log("saved new nomination")
             } 
         } catch (error) {
             console.log(error);
@@ -23,7 +22,6 @@ export default function Nominations() {
         const storedNominations = localStorage.getItem('nominationList')
         if(storedNominations){
             const parsedNominations = JSON.parse(storedNominations)
-            console.log(parsedNominations)
             // eslint-disable-next-line
             dispatch(MoviesActions.restore_nominations(parsedNominations))
         }
