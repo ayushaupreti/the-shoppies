@@ -40,7 +40,7 @@ export default function Nominations() {
     function Nomination() {
         return (
             <div className="list-group list-group-flush">
-                {nominations.map((nomination) => {
+                {nominations && nominations.map((nomination) => {
                     return (
                         <li key={"nomination"+nomination["imdbID"]} className="list-group-item nomination bg-secondary">
                             <div className="row"> 
@@ -69,7 +69,7 @@ export default function Nominations() {
             <div className="card nomination-card bg-secondary h-100 my-4">
                 <div className="card-body">
                     <h3>Your Nominations</h3>
-                    {!loading && nominations !== undefined && <Nomination />}
+                    {!loading && nominations && <Nomination />}
                 </div>
             </div>
         </div>

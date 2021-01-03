@@ -22,14 +22,14 @@ const omdb = (state = defaultMovieState, action) => {
       return produce(state, draft => {
         draft.loading = false;
         draft.list = action.response.Search;
-        if (draft.nominated !== undefined) {
+        if (draft.nominations !== undefined) {
           for (let i = 0; i < draft.nominations.length; i++) {
             const nominatedMovie = draft.list.find((movie) => movie.imdbID === draft.nominations[i].imdbID)
+            console.log(nominatedMovie)
             const index = draft.list.indexOf(nominatedMovie)
             if (nominatedMovie) {
               draft.list[index]["Nominated"] = true
             }
-            console.log(draft.list[index]["Nominated"])
           }
           for (let i = 0; i < draft.previouslyRemovedNominations.length; i++) {
             const removedNomination = draft.list.find((movie) => movie.imdbID === draft.previouslyRemovedNominations[i].imdbID)
@@ -51,10 +51,12 @@ const omdb = (state = defaultMovieState, action) => {
       return produce(state, draft => {
         const nominatedMovie = draft.list.find((movie) => movie.imdbID === action.imdbID)
         const index = draft.list.indexOf(nominatedMovie)
+        console.log(`index of nominated movie ${index}`)
         if (draft.nominations === undefined){
           const newNominations = []
           newNominations.push(nominatedMovie)
           draft.nominations = newNominations
+          console.log(JSON.stringify(draft.nominations))
         } else{
           draft.nominations.push(nominatedMovie) 
         } 
