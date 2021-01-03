@@ -31,13 +31,11 @@ const omdb = (state = defaultMovieState, action) => {
             }
           }
         }
-        if(draft.previouslyRemovedNominations){
-          for (let i = 0; i < draft.previouslyRemovedNominations.length; i++){
-            const removedNomination = draft.list.find((movie) => movie.imdbID === draft.previouslyRemovedNominations[i].imdbID)
-            if(removedNomination){
-              const index = draft.list.indexOf(removedNomination)
-              draft.list[index]["Nominated"] = true
-            }
+        for (let i = 0; i < draft.previouslyRemovedNominations.length; i++) {
+          const removedNomination = draft.list.find((movie) => movie.imdbID === draft.previouslyRemovedNominations[i].imdbID)
+          if (removedNomination) {
+            const index = draft.list.indexOf(removedNomination)
+            draft.list[index]["Nominated"] = false
           }
         }
         draft.error = "";
