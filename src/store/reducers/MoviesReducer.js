@@ -45,9 +45,8 @@ const omdb = (state = defaultMovieState, action) => {
         const index = draft.list.indexOf(nominatedMovie)
         if (draft.nominations === undefined){
           draft.nominations = []
-        } if (nominatedMovie) {
-          draft.nominations.push(nominatedMovie)
         }
+        draft.nominations.push(nominatedMovie)  
         draft.list[index]["Nominated"] = true
       })
     case MoviesActions.NOMINATION_REMOVAL:
