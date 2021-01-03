@@ -40,6 +40,7 @@ export default function Nominations() {
     function Nomination() {
         return (
             <div className="list-group list-group-flush">
+                console.log(nominations)
                 {nominations.map((nomination) => {
                     return (
                         <li key={"nomination"+nomination["imdbID"]} className="list-group-item nomination bg-secondary">
