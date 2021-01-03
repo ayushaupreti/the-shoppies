@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { MoviesActions } from '../store/actions/MoviesActions';
 import "./style.css";
@@ -8,24 +8,24 @@ export default function Nominations() {
     const loading = useSelector(state => state.movies.omdb.loading)
     const dispatch = useDispatch()
 
-    // seEffect(() => {
-    //     try {
-    //         if (nominations !== undefined) {
-    //             localStorage.setItem('nominationList', JSON.stringify(nominations));
-    //         } 
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }, [nominations]);
+    useEffect(() => {
+        try {
+            if (nominations !== undefined) {
+                localStorage.setItem('nominationList', JSON.stringify(nominations));
+            } 
+        } catch (error) {
+            console.log(error);
+        }
+    }, [nominations]);
 
-    // useEffect(() => {
-    //     const storedNominations = localStorage.getItem('nominationList')
-    //     if(storedNominations){
-    //         const parsedNominations = JSON.parse(storedNominations)
-    //         // eslint-disable-next-line
-    //         dispatch(MoviesActions.restore_nominations(parsedNominations))
-    //     }
-    // }, [dispatch])
+    useEffect(() => {
+        const storedNominations = localStorage.getItem('nominationList')
+        if(storedNominations){
+            const parsedNominations = JSON.parse(storedNominations)
+            // eslint-disable-next-line
+            dispatch(MoviesActions.restore_nominations(parsedNominations))
+        }
+    }, [dispatch])
 
 
     function NominationsComplete(){
