@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Movie Nominations
+This project is a React application for a simple movie nomination web page. Originally for a job application, however it will still be worked on for more practice on React concepts. \
+Currently, this site is deployed with Netlify. Visit https://ayusha-shoppies.netlify.app to view.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
+Cloning this repository to your laptop gives you the option to work with the code and to run in locally in the development mode. \
+To do so, simply run `git clone https://github.com/ayushaupreti/the-shoppies.git` wherever you would like to save it. \
+To run locally, in the project directory, run `npm start` will begin the app. \
+Open http://localhost:3000 to view it in the browser. \
+The page will reload if you make edits. 
 
-## Available Scripts
+## Features/Functionality
+This site uses the OMDB Free API to search the OMDB movie database for movies and displays the results. \
+Basic functionalities are as follows:
+  - you can search a movie and the results will appear in a list, with the name of the movie and the year, along with a button to nominate
+  - nominating a movie will add it to your nomination list on the side of the screen (web) or at the bottom of the page (mobile)
+  - once a movie has been nominated, its nomination button will be disabled
+  - you can also remove a nomination, by clicking the 'x' next to the movie name in your nomination list
+  - once a movie nomination has been removed, its nominate button will be enabled again
+  - your nomination list is also preserved; refreshing the webpage/closing the tab and opening it again will still display the same nomination list you had previously
+  - once you nominate 5 movies, a little congratulatory banner will appear
+  - as you type in the search bar, the results will reload 
+  
+## Tech Details
+### Redux
+Since there was a lot of need for inter-component state referencing in this project (for example, clicking a button in the search results can alter the nomination list), I decided react-redux was the best route to take to have the cleanest possible file structure. 
+### Debounce
+In order to have the results reload as you type in the search bar, I needed a way to minimize the amount of API calls made. I found a simple version of a debounce function, which controls the API calls. It only makes the call with a 200 millisecond delay from the last typing motion, and this is reset if the user types again within those 200 milliseconds. Provided you type quick enough, it will only make one API call at the end of your search, and not one per character. 
+### Local Storage
+To maintain the nomination list state after refreshing/re-visiting site, I used `localStorage.setItem()` to store the nomination list. To ensure no changes were lost, I set the nomination list state after each new nomination. Upon each app load, I used `localStore.getItem()` to retrieve the nomination list.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future Additions
+Some ideas on future additions to this project:
+  - Integrate proper debounce (either lodash.debounce or throttle-debounce from npm, or any others which work better)
+  - Several nomination lists (you can categorize your lists by movie genre, or any other category of your choosing)
+  - Links to share your list with others
